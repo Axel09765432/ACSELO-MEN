@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACSELO | Streetwear Official</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="global-background-overlay"></div>
+
+    <header class="navbar">
+        <h1 class="brand-logo gradient-text">ACSELO</h1>
+        <nav class="nav-links">
+            <a href="#">INICIO</a>
+            <a href="#bestsellers">COLECCIÓN</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+        <div class="nav-icons">
+            <div class="cart-wrapper" onclick="openCart()">
+                <span class="cart-icon">🛒</span>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">ACSELO<br>WEAR</h2>
+                <p class="hero-subtitle">Diseño urbano premium de alta gama.</p>
+                <button class="btn-main" onclick="window.location.href='#bestsellers'">VER CATÁLOGO</button>
+            </div>
+            <div class="hero-image">
+                <img src="img/foto5.jpg" alt="Portada 5">
+            </div>
+        </section>
+
+        <section class="hero-section alternate">
+            <div class="hero-image">
+                <img src="img/foto2.jpg" alt="Portada 2">
+            </div>
+            <div class="hero-content">
+                <h2 class="hero-title">WHITE<br>TIGER</h2>
+                <p class="hero-subtitle">Estilo audaz para el día a día.</p>
+                <button class="btn-main" onclick="window.location.href='#bestsellers'">DESCUBRIR</button>
+            </div>
+        </section>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">STREET<br>STYLE</h2>
+                <p class="hero-subtitle">Ediciones limitadas 2026.</p>
+                <button class="btn-main" onclick="window.location.href='#bestsellers'">EXPLORAR</button>
+            </div>
+            <div class="hero-image">
+                <img src="img/foto4.jpg" alt="Portada 4">
+            </div>
+        </section>
+
+        <section class="hero-section alternate">
+            <div class="hero-image">
+                <img src="img/foto3.jpg" alt="Portada 3">
+            </div>
+            <div class="hero-content">
+                <h2 class="hero-title">URBAN<br>ESSENTIALS</h2>
+                <p class="hero-subtitle">Pantalones diseñados para el movimiento.</p>
+                <button class="btn-main" onclick="window.location.href='#bestsellers'">VER MÁS</button>
+            </div>
+        </section>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">NUEVA<br>ERA</h2>
+                <p class="hero-subtitle">Comodidad y lujo en estilo Corduroy.</p>
+                <button class="btn-main" onclick="window.location.href='#bestsellers'">COMPRAR YA</button>
+            </div>
+            <div class="hero-image">
+                <img src="img/foto7.jpg" alt="Portada 7">
+            </div>
+        </section>
+
+        <section class="bestsellers" id="bestsellers">
+            <div class="section-header">
+                <h2 class="gradient-text">PRODUCTOS RECIENTES</h2>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card" onclick="openModal('Sudadera Serpiente Black', 250, 'img/foto1.jpg')">
+                    <img src="img/foto1.jpg" alt="Foto 1">
+                    <div class="product-info">
+                        <h3>SUDADERA SERPIENTE</h3>
+                        <p class="price">$300 MXN</p>
+                    </div>
+
+                </div>
+                <div class="product-card" onclick="openModal('Sudadera tigre', 250, 'img/foto8.jpg')">
+                    <img src="img/foto8.jpg" alt="Foto 8">
+                    <div class="product-info">
+                        <h3>SUDADERA TIGRE</h3>
+                        <p class="price">$300 MXN</p>
+                    </div>
+
+                </div>
+                <div class="product-card" onclick="openModal('Conjunto short y tigre', 250, 'img/foto6.jpg')">
+                    <img src="img/foto6.jpg" alt="Foto 6">
+                    <div class="product-info">
+                        <h3>CONJUNTO SHORT Y CHAMARRA</h3>
+                        <p class="price">$350 MXN</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-section">
+            <h2 class="gradient-text">CONÉCTATE CON NOSOTROS</h2>
+            <div class="social-links">
+                <a href="https://www.instagram.com/acselo_mx?igsh=aXpwZjNoc2I4NXVu&utm_source=qr" target="_blank" class="social-btn instagram">INSTAGRAM</a>
+                <a href="https://www.facebook.com/share/18aWNKHmGQ/?mibextid=wwXIfr" target="_blank" class="social-btn facebook">FACEBOOK</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-grid">
+                <img id="modal-img" src="">
+                <div class="modal-details">
+                    <h2 id="modal-name">PRODUCTO</h2>
+                    <p id="modal-price-text" class="modal-price"></p>
+                    <button class="btn-whatsapp-modern" onclick="addToCart()">AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const phone = "5951070435";
+        let cart = [];
+        let currentProduct = {};
+
+        function openModal(name, price, img) {
+            currentProduct = { name, price };
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-price-text').innerText = `$${price} MXN`;
+            document.getElementById('modal-img').src = img;
+            document.getElementById('product-modal').style.display = "flex";
+        }
+
+        function closeModal() { document.getElementById('product-modal').style.display = "none"; }
+
+        function addToCart() {
+            cart.push(currentProduct);
+            document.getElementById('cart-count').innerText = cart.length;
+            closeModal();
+        }
+
+        function openCart() {
+            if(cart.length === 0) return alert("Tu carrito está vacío");
+            const items = cart.map(p => `- ${p.name} ($${p.price})`).join("%0A");
+            const msg = `Hola ACSELO, me gustaría pedir lo siguiente:%0A${items}`;
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+:root {
+    --red: #22dc0e;
+    --black: #000;
+    --wa-green: #83f835;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--black); color: white; overflow-x: hidden; }
+
+/* Fondo Borroso */
+.global-background-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('img/fondo-borroso.jpg') center/cover;
+    filter: blur(20px) brightness(0.3);
+    z-index: -1; transform: scale(1.1);
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--red), #fff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Navbar */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 1000;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+}
+.nav-links a { color: rgb(150, 230, 137); text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* Carrito Icono */
+.cart-wrapper { position: relative; cursor: pointer; font-size: 1.4rem; }
+#cart-count { 
+    background: var(--red); color: white; font-size: 0.7rem; 
+    padding: 2px 7px; border-radius: 50%; position: absolute; 
+    top: -5px; right: -10px; font-weight: 800;
+}
+
+/* Hero Sections Ampliadas */
+.hero-section {
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh; padding: 0 8%; gap: 60px;
+}
+.hero-section.alternate { flex-direction: row-reverse; }
+
+.hero-content { flex: 1; }
+.hero-title { font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.85; font-weight: 800; margin-bottom: 25px; }
+.hero-subtitle { font-size: 1.2rem; opacity: 0.7; margin-bottom: 35px; max-width: 450px; }
+
+.hero-image { flex: 1.2; height: 75vh; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.btn-main {
+    background: white; color: black; border: none; padding: 18px 45px;
+    font-weight: 800; cursor: pointer; border-radius: 50px; transition: 0.3s;
+}
+.btn-main:hover { background: var(--red); color: white; transform: scale(1.05); }
+
+/* Grid de Productos Más Amplio */
+.product-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 40px; padding: 50px 5%;
+}
+.product-card { background: #0a0a0a; border: 1px solid #1a1a1a; cursor: pointer; transition: 0.4s; }
+.product-card:hover { border-color: var(--red); transform: translateY(-10px); }
+.product-card img { width: 100%; height: 450px; object-fit: cover; }
+
+/* Contacto y Redes */
+.contact-section { padding: 100px 5%; text-align: center; }
+.social-links { display: flex; justify-content: center; gap: 25px; margin-top: 40px; }
+.social-btn { 
+    text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); 
+    padding: 15px 40px; border-radius: 50px; font-weight: 700; transition: 0.3s;
+}
+.instagram:hover { background: #E1306C; border-color: transparent; }
+.facebook:hover { background: #e61717; border-color: transparent; }
+
+/* Modal Moderno */
+.modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.97); z-index: 2000; justify-content: center; align-items: center; }
+.modal-content { background: #111; width: 90%; max-width: 850px; padding: 40px; border-radius: 15px; position: relative; }
+.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+#modal-img { width: 100%; height: 500px; object-fit: cover; border-radius: 10px; }
+.btn-whatsapp-modern { 
+    background: var(--wa-green); color: white; border: none; width: 100%; 
+    padding: 20px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 20px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero-section, .hero-section.alternate { flex-direction: column-reverse; height: auto; padding: 120px 5% 50px; }
+    .hero-image { width: 100%; height: 450px; }
+    .modal-grid { grid-template-columns: 1fr; }
+}
